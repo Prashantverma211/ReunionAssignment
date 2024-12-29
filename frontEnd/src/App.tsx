@@ -9,7 +9,7 @@ import Login from "./pages/login/Login";
 import SignUp from "./pages/signup/SignUp";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import UserContext from "./store/UserContext";
-import TaskList from "./pages/taskList/taskList";
+import TaskList from "./pages/taskList/TaskList";
 
 function App() {
   const { isLoggedIn } = useContext(AuthContext);
