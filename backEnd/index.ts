@@ -1,6 +1,7 @@
 import express, { NextFunction, Response, Request } from "express";
 import { connectDB, gracefulShutdown } from "./connect";
 import authRouter from "./routes/auth";
+import taskRouter from "./routes/user";
 import bodyParser from "body-parser";
 const dotenv = require("dotenv");
 dotenv.config();
@@ -35,6 +36,9 @@ app.use("/", (req, res, next) => {
 
 //-------------------------------- Auth Route --------------------------------
 app.use("/api/auth", authRouter);
+
+//-------------------------------- Auth Route --------------------------------
+app.use("/api/task", taskRouter);
 
 //-------------------------------- Incorrect URL Requests --------------------------------
 app.use(() => {

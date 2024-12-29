@@ -2,13 +2,16 @@ import { useContext } from "react";
 import AuthContext from "../../store/AuthContext";
 import { toastifySuccess } from "../../Helpers/notificationToastify";
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import UserContext from "../../store/UserContext";
 
 function NavBar() {
   const authCtx = useContext(AuthContext);
+  const { clearTask } = useContext(UserContext);
   const navigate = useNavigate();
 
   function LogoutHandler() {
     authCtx.logout();
+    clearTask();
     navigate("/", { replace: true });
     toastifySuccess("Logged out successfully.");
   }
@@ -24,30 +27,19 @@ function NavBar() {
           to="/"
           end
         >
-          HomePage
+          {authCtx.isLoggedIn ? "Dashboard Page" : "HomePage"}
         </NavLink>
-        {/* {authCtx.isLoggedIn && authCtx.role === "student" && (
+        {authCtx.isLoggedIn && (
           <NavLink
             className={`${({ isActive }: { isActive: boolean }) =>
               isActive ? "active" : ""} cursor-pointer`}
-            to="/studentProfile"
+            to="/taskList"
             end
             replace
           >
-            Profile
+            Task List
           </NavLink>
         )}
-        {authCtx.isLoggedIn && authCtx.role === "staff" && (
-          <NavLink
-            className={`${({ isActive }: { isActive: boolean }) =>
-              isActive ? "active" : ""} cursor-pointer`}
-            to="/studentDetails"
-            end
-            replace
-          >
-            Student Details
-          </NavLink>
-        )} */}
       </div>
       <div className="flex flex-row gap-5 items-center">
         {!authCtx.isLoggedIn && (

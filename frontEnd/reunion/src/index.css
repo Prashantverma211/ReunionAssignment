@@ -24,3 +24,16 @@
   border-bottom-color: #ffffff75;
   width: fit-content;
 }
+
+@keyframes slide-down {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-down {
+  animation: slide-down 0.5s ease-out forwards;
+}

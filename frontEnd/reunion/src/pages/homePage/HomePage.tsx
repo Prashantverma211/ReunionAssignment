@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import AuthContext from "../../store/AuthContext";
+import DashboardPage from "../dashboardPage/DashboardPage";
 
 function HomePage() {
   const { isLoggedIn, username } = useContext(AuthContext);
@@ -16,6 +17,7 @@ function HomePage() {
         </h2>
         <p className="text-gray-700">Task Management System</p>
       </div>
+      {isLoggedIn && <DashboardPage />}
     </div>
   );
 }
